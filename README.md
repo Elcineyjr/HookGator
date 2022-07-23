@@ -1,5 +1,11 @@
-# HookGator
-This is an implementation of a hooking engine for 64 bit processes in a Windows environment
+<h1 align="center">HookGator</h1>
+<p align="center">
+  <i>A hooking engine for 64 bit processes in a Windows environment</i>
+  <br/><br/>
+  
+  <img width="240" src="https://user-images.githubusercontent.com/22310158/180611014-87bcdfac-cae9-46bf-8de1-285a82ed3b52.png" />
+  <br/>
+</p>
 
 # How does it work?
 
