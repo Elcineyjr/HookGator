@@ -1,0 +1,7 @@
+C:\Users\user\Desktop\64APIHooking\DllInjector\DllInjector\bin\x64\Release\DllInjector.exe.config
+C:\Users\user\Desktop\64APIHooking\DllInjector\DllInjector\bin\x64\Release\DllInjector.exe
+C:\Users\user\Desktop\64APIHooking\DllInjector\DllInjector\bin\x64\Release\DllInjector.pdb
+C:\Users\user\Desktop\64APIHooking\DllInjector\DllInjector\obj\x64\Release\DllInjector.csproj.AssemblyReference.cache
+C:\Users\user\Desktop\64APIHooking\DllInjector\DllInjector\obj\x64\Release\DllInjector.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\64APIHooking\DllInjector\DllInjector\obj\x64\Release\DllInjector.exe
+C:\Users\user\Desktop\64APIHooking\DllInjector\DllInjector\obj\x64\Release\DllInjector.pdb

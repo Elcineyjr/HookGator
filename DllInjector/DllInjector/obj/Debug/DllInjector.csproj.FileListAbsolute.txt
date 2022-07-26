@@ -1,0 +1,1 @@
+C:\Users\user\Desktop\Projects\64bitAPIHooking\DllInjector\DllInjector\obj\Debug\DllInjector.csprojResolveAssemblyReference.cache
