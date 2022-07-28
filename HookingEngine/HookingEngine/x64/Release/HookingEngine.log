@@ -1,0 +1,12 @@
+﻿  pch.cpp
+  dllmain.cpp
+  hde64.cpp
+  hookmsgboxa.cpp
+C:\Users\user\Desktop\64bitAPIHooking\HookingEngine\HookingEngine\hookmsgboxa.cpp(157,20): warning C4244: 'initializing': conversion from 'DWORD' to 'UINT8', possible loss of data
+C:\Users\user\Desktop\64bitAPIHooking\HookingEngine\HookingEngine\hookmsgboxa.cpp(140,33): warning C4101: 'originalProtection': unreferenced local variable
+  Generating code
+  9 of 10 functions (90.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  HookingEngine.vcxproj -> C:\Users\user\Desktop\64bitAPIHooking\HookingEngine\x64\Release\HookingEngine.dll

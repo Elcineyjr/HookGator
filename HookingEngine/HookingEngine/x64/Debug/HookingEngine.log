@@ -1,0 +1,8 @@
+﻿  hde64.cpp
+  hookmsgboxa.cpp
+C:\Users\user\Desktop\64APIHooking\HookingEngine\HookingEngine\hookmsgboxa.cpp(143,12): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+C:\Users\user\Desktop\64APIHooking\HookingEngine\HookingEngine\hookmsgboxa.cpp(143,12): message : consider using '%zd' in the format string
+C:\Users\user\Desktop\64APIHooking\HookingEngine\HookingEngine\hookmsgboxa.cpp(157,20): warning C4244: 'initializing': conversion from 'DWORD' to 'UINT8', possible loss of data
+C:\Users\user\Desktop\64APIHooking\HookingEngine\HookingEngine\hookmsgboxa.cpp(140,33): warning C4101: 'originalProtection': unreferenced local variable
+  Generating Code...
+  HookingEngine.vcxproj -> C:\Users\user\Desktop\64APIHooking\HookingEngine\x64\Debug\HookingEngine.dll
