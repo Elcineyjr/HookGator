@@ -19,7 +19,7 @@ namespace Injector
 
             OptionSet option_set = new OptionSet()
             {
-                {"p=|process=", "Process name to protect", v => {processList.Add(v.ToLower()); } },
+                {"p=|process=", "Process name to inject", v => {processList.Add(v.ToLower()); } },
                 {"d=|dll=", "Path to dll to inject", v => { dllPath = v; } }
             };
 
