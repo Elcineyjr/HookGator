@@ -41,6 +41,41 @@ Onde:
 
 Caso o programa não seja rodado com privilégio administrativo, ele irá requisitá-lo.
 
+O produto vem com uma DLL de teste, e uma aplicação de teste. O código da aplicação de teste é como segue:
+
+```C
+#include <stdio.h>
+#include <Windows.h>
+
+void PrintBytes(char* pLocation) {
+    int i;
+    for (i = 0; i < 10; i++) {
+        unsigned char c = (pLocation)[i];
+        printf("%02x ", c);
+    }
+    printf("\n");
+}
+
+
+int main()
+{
+    // Avoid race conditions
+    Sleep(2000);
+    MessageBoxA(NULL, "test", "test", MB_OK);
+
+    // Detect if the application itself is being hooked
+    if (((PBYTE)MessageBoxA)[0] == 0xE9) {
+        printf("[+] MessageBoxA is being hooked!\n");
+        PrintBytes((char*)MessageBoxA);
+
+        MessageBoxExA(NULL, "test", "test", MB_OK, 0);
+    }
+
+}
+```
+
+A aplicação também detecta quando ela mesma está sendo injetada.
+
 # Onde utilizar
 
 Como já dito, o HookGator utiliza *Patch Hooking*, que é uma forma de injeção de código extensivamente utilizada por soluções de antivirus. Dentre outros motivos, pode ser utilizada para detecção de chamadas de API suspeitas, visto que essa técnica consiste na interceptação dessas chamadas, permitindo-nos homologar, processar ou realizar quaisquer outras atividades pertinentes.
