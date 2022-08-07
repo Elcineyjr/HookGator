@@ -28,6 +28,8 @@ A *hooking engine* é uma DLL cujo propósito é aplicar *inline patches* em fun
 
 # Como usar
 
+Em um terminal adminstrativo, execute
+
 ```powershell
 .\DLLInjector.exe -p <processo_alvo> -d <DLL_para_injetar>
 ```
@@ -36,6 +38,8 @@ Onde:
 
 + `p` é uma *string* que represente o nome do processo em memória;
 + `d` é o caminho absoluto para a DLL em disco.
+
+Caso o programa não seja rodado com privilégio administrativo, ele irá requisitá-lo.
 
 # Onde utilizar
 
