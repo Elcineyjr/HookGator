@@ -41,7 +41,7 @@ Onde:
 
 Caso o programa não seja rodado com privilégio administrativo, ele irá requisitá-lo.
 
-O produto vem com uma DLL de teste, e uma aplicação de teste. O código da aplicação de teste é como segue:
+O produto vem com uma DLL de teste, e uma aplicação de teste. O código da aplicação de teste é como segue, e seu papel é invocar a API que está sendo injetada, e também consegue detectar se ela mesmo está sendo injetada ao comparar o primeiro byte da função da API com `0xE9`, o *OP-code* da instrução de salto relativo.
 
 ```C
 #include <stdio.h>
@@ -74,8 +74,6 @@ int main()
 }
 ```
 
-A aplicação também detecta quando ela mesma está sendo injetada.
-
 Exemplo de uso do hooking de funções usando a aplicação teste:
 
 https://user-images.githubusercontent.com/22310158/183305672-cea827be-36c9-4867-a183-fe8f3741dfad.mp4
@@ -95,3 +93,12 @@ O código em C# é responsável pelo monitoramento, e subsequente injeção de D
 ## C++
 
 Já o código feito em C++, foi dedicado a criação da *Hook Engine*, isso porque, para que processos nativos do Windows sejam capazes de carregar uma DLL, ela precisa ser feita em uma linguagem de mais baixo nivel, conhecida pela terminologia da Microsoft como *unmanaged code*. Então apenas DLL feitas em C++, C, ou Assembly. Embora seja possivel a criação de DLLs utilizando C#, elas não seriam capazes de ser carregadas por processos nativos, visto que elas são consideradas *managed code*.
+
+# Instalação
+
+Na página de *releases* do projeto, há um arquivo em formato zip com o injetor, a *hooking engine* e a aplicação de teste descrita nas seções acima.
+Para utilizá-lo, basta descompactar o arquivo zip e realizar o passo-a-passo da seção Como Usar.
+
+# Change Log
+
+* v0.1.0-alpha
