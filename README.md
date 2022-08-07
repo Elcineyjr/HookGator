@@ -19,14 +19,23 @@ Esse *hook*, ou gancho, é aplicado através de um injetor de DLL. O papel do in
 
 # O que é a hooking engine?
 
+*Hooking* de funções da API do Windows é uma maneira antiga, porém ainda eficaz de interceptar chamadas à APIs do Windows, através da injeção de código no espaço de enderaçamento de um processo remoto alvo. Soluções de anti-vírus são notoriamente conhecidas por utilizar este método de monitoramento dinâmico de processos para detecção de chamadas suspeitas de API.
+
+Porém, não apenas processos benignos podem se utilizar dessa forma de injeção. Famílias famosas de *malware*, como, por exemplo, Dridex, utilizavam-na como forma primária de subersão de mecanismos de defesas.
+
 A *hooking engine* é uma DLL cujo propósito é aplicar *inline patches* em funções nativas da API do Windows. Desta forma, alterando o comportamento da API.
 
 
 # Como usar
 
 ```powershell
-.\DLLInjector.exe -p <processo_alvo> <DLL_para_injetar>
+.\DLLInjector.exe -p <processo_alvo> -d <DLL_para_injetar>
 ```
+
+Onde: 
+
++ `p` é uma *string* que represente o nome do processo em memória;
++ `d` é o caminho absoluto para a DLL em disco.
 
 # Onde utilizar
 
