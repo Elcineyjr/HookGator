@@ -76,6 +76,10 @@ int main()
 
 A aplicação também detecta quando ela mesma está sendo injetada.
 
+Exemplo de uso do hooking de funções usando a aplicação teste:
+
+https://user-images.githubusercontent.com/22310158/183305672-cea827be-36c9-4867-a183-fe8f3741dfad.mp4
+
 # Onde utilizar
 
 Como já dito, o HookGator utiliza *Patch Hooking*, que é uma forma de injeção de código extensivamente utilizada por soluções de antivirus. Dentre outros motivos, pode ser utilizada para detecção de chamadas de API suspeitas, visto que essa técnica consiste na interceptação dessas chamadas, permitindo-nos homologar, processar ou realizar quaisquer outras atividades pertinentes.
