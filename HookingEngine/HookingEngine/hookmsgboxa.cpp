@@ -7,7 +7,10 @@
 #pragma once
 
 #pragma pack(push, 1)
-// 64-bit indirect absolute jump.
+
+/**
+ * @brief 64-bit indirect absolute jump.
+ */
 typedef struct _JMP_ABS
 {
     UINT8  opcode0;     // FF25 00000000: JMP [+6]
@@ -16,7 +19,9 @@ typedef struct _JMP_ABS
     UINT64 address;     // Absolute destination address
 } JMP_ABS, * PJMP_ABS;
 
-// 64-bit indirect absolute call.
+/**
+ * @brief 64-bit indirect absolute call.
+ */
 typedef struct _CALL_ABS
 {
     UINT8  opcode0;     // FF15 00000002: CALL [+6]
@@ -27,6 +32,9 @@ typedef struct _CALL_ABS
     UINT64 address;     // Absolute destination address
 } CALL_ABS;
 
+/**
+ * @brief  64-bit absolute jump
+ */
 typedef struct _JCC_ABS
 {
     UINT8  opcode;      // 7* 0E:         J** +16
@@ -37,6 +45,9 @@ typedef struct _JCC_ABS
     UINT64 address;     // Absolute destination address
 } JCC_ABS;
 
+/**
+ * @brief 32-bit relative jump
+ */
 typedef struct _JMP_REL
 {
     UINT8  opcode;      // E9/E8 xxxxxxxx: JMP/CALL +5+xxxxxxxx
@@ -54,6 +65,14 @@ typedef struct _JMP_REL
 // Max range for seeking a memory block. (= 1024MB)
 #define MAX_MEMORY_RANGE 0x40000000
 
+
+/**
+ * @brief  Helper function to findFreeRegion
+ * @param  pAddress: Target function to hook
+ * @param  pMinAddress: Address to stop the search if none is find
+ * @param  dwAllocationGranularity: Windows allocation granularity for new memory regions. It usually defaults to 64k 
+ * @retval Returns a void pointer which represents the free region or null.
+ */
 static LPVOID FindPrevFreeRegion(LPVOID pAddress, LPVOID pMinAddr, DWORD dwAllocationGranularity)
 {
     ULONG_PTR tryAddr = (ULONG_PTR)pAddress;
@@ -82,9 +101,13 @@ static LPVOID FindPrevFreeRegion(LPVOID pAddress, LPVOID pMinAddr, DWORD dwAlloc
     return NULL;
 }
 
-// 32 bit relative jumps only cover a handful of addresses,
-// so we set a pre-determined range of addresses
-// to look for for writing the trampoline
+
+/**
+ * @brief 32 bit relative jumps only cover a handful of addresses
+ * @note  Due to 64-bit limitation, we need to find a memory region that sits closely to the function we are trying to hook. Thus, this function arises.
+ * @param  lpMemRegion: Pointer to the target function
+ * @retval Returns a void pointer which represents the free region or null.
+ */
 LPVOID findFreeRegion(LPVOID lpMemRegion) {
     ULONG_PTR minAddr;
     ULONG_PTR maxAddr;
@@ -95,7 +118,7 @@ LPVOID findFreeRegion(LPVOID lpMemRegion) {
     minAddr = (ULONG_PTR)si.lpMinimumApplicationAddress;
     maxAddr = (ULONG_PTR)si.lpMaximumApplicationAddress;
 
-    // pOrigin ± 512MB
+    // pOrigin ï¿½ 512MB
     if ((ULONG_PTR)pOrigin > MAX_MEMORY_RANGE && minAddr < (ULONG_PTR)pOrigin - MAX_MEMORY_RANGE)
         minAddr = (ULONG_PTR)pOrigin - MAX_MEMORY_RANGE;
 
@@ -121,6 +144,14 @@ LPVOID findFreeRegion(LPVOID lpMemRegion) {
 }
 
 LPBYTE relay;
+/**
+ * @brief  Write the jump to the original function, after the execution of the proxy function
+ * @param  target: Target function to hook
+ * @param  detour: Proxy function or detour function
+ * @param  trampoline: A free region of memory returned by findFreeRegion
+ * @param  original: An auxiliary pointer that will point to the original function
+ * @retval Returns true if trampoline was created, false otherwise.
+ */
 BOOL createTrampoline(LPVOID target, LPVOID detour, LPVOID trampoline, LPVOID* original) {
     CALL_ABS call = {
         0xFF, 0x15, 0x00000002, // FF15 00000002: CALL [RIP+8]
