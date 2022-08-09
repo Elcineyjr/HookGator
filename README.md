@@ -1,6 +1,6 @@
 <h1 align="center">HookGator</h1>
 <p align="center">
-  <i>Uma hooking engine para processadores 64 bit em um ambiente Windows</i>
+  <i>Uma hooking engine para processos 64 bit em um ambiente Windows</i>
   <br/><br/>
   
   <img width="240" src="https://user-images.githubusercontent.com/22310158/180611014-87bcdfac-cae9-46bf-8de1-285a82ed3b52.png" />
